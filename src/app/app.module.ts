@@ -3,16 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
 
-@NgModule({
-  declarations: [
-    AppComponent
+@NgModule({ // decorator
+  declarations: [ // To hold components and pipes  for specific modules
+    AppComponent,
+    LoginComponent
   ],
-  imports: [
+  imports: [ //for 3rd party libraries
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [], // contain services
+  bootstrap: [AppComponent] //to identify root component
 })
-export class AppModule { }
+export class AppModule { } // available for other modules
