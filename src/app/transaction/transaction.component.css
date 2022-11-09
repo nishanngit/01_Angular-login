@@ -1,0 +1,12 @@
+table,th,tr,td{
+    color: violet;
+    border: 1px solid black;
+    padding:20px;
+    font-size: 20px;
+    margin-left: auto;/*to make table center */
+    margin-right: auto; /*to make table center */
+    margin-top:30px;
+}
+#a1{
+    color: green;
+}

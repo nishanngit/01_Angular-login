@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -11,46 +13,59 @@ export class LoginComponent implements OnInit {// 3rd execution
   accounts = "Enter Your Account Number Here";
   acno = '';
   pswd = '';
-  constructor() { } // first execution
+  constructor(private router:Router, private ds:DataService) {} // first execution
 
   ngOnInit(): void {// life cycle hooks - initial process  // second execution
   }
 
 
- userDetails:any={  //object of objects  ..... database details......
-  1000:{acno:1000,username:'Gopik',password:1000,balance:10000},
-  1001:{acno:1001,username:'Soja',password:1001,balance:10000},
-  1002:{acno:1002,username:'Abhijith',password:1002,balance:10000},
- }
-
  // Here you can add user defined functions 
  //userdefined function() // 4th execution
 
-acnoChange(event:any){
-  //console.log(event);
-  console.log(event.target.value); //1000
-  this.acno=event.target.value;
-}
-pswdChange(event:any){
-  //console.log(event);
+ acnoChange(event:any){
+  //console.log(event)
   console.log(event.target.value);
-  this.pswd=event.target.value;
-}
- login(){
-    //alert('Login Clicked . . . ');
-    var acno = this.acno;//1000
-    var pswd = this.pswd;//1000
-    var userDetails = this.userDetails;
-    if(acno in userDetails){
-      if(pswd==userDetails[acno]['password']){
-        alert("login Successfull")
-      }else{
-        alert("incorrect password")
-      }
-
-    }else{
-      alert("user does not exist")
+  this.acno = event.target.value;
+  }
+  pswdChange(event:any){
+    //console.log(event)
+    console.log(event.target.value);
+    this.pswd = event.target.value;
     }
+
+    login(){
+      //   alert('Login Clicked . . . ');
+    var acno = this.acno; //1000
+    var pswd = this.pswd; //1000
+    
+   const result = this.ds.login(acno,pswd);
+
+   if(result){
+    alert('login successfull -');
+    this.router.navigateByUrl('dashboard');
+   }
+     }
+
+
+
+/*  login(){
+  //   alert('Login Clicked . . . ');
+var acno = this.acno;
+var pswd = this.pswd;
+
+var userDetails = this.userDetails;
+
+if(acno in userDetails){
+  if(pswd==userDetails[acno]['password']){
+   alert("login successfull");
+    
+  }else{
+    alert("Incorrect Password")
+  }
+
+}else{
+  alert("user does not exist");
 }
+} */
 
 }
